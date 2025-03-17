@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Task</title>
+    <style>
+        body {
+            background-color: #f8f5f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            width: 80%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the form elements */
+        }
+
+        label {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea,
+        input[type="datetime-local"] {
+            width: 100%;
+            padding: 12px 20px; /* Increase padding */
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px; /* Increase font size */
+        }
+
+        textarea {
+            height: 150px; /* Increase textarea height */
+        }
+
+        input[type="submit"] {
+            background-color: black;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #006400;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add Task</h1>
+    <form method="POST">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title"><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea><br>
+
+        <label for="deadline">Deadline:</label>
+        <input type="datetime-local" id="deadline" name="deadline"><br>
+
+        <label for="assignment_type">Assignment Type:</label>
+        <input type="text" id="assignment_type" name="assignment_type"><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

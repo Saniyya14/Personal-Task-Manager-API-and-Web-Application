@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task List</title>
+    <style>
+        body {
+            background-color: #f8f5f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .task-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        .task-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .task-card {
+                width: calc(33.33% - 20px);
+            }
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        #add-task-button {
+            background-color: black;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        #add-task-button:hover {
+            background-color: #006400;
+        }
+
+        #delete-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align form content to the left */
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+
+        .button-row { /* Container for buttons */
+            display: flex;
+            margin-left: 220px;
+        }
+
+        #delete-form button, .back-to-home {
+            background-color: black;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+
+        }
+
+        #delete-form button:hover, .back-to-home:hover {
+            background-color: #006400;
+            transform: scale(1.01); /* Add subtle scale transform */
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Task List</h1>
+    <a href="{{ url_for('add_task') }}"><button id="add-task-button">Add Task</button></a>
+    <form id="delete-form" method="POST" action="/delete_tasks">
+        <div class="task-row">
+            {% for task in tasks %}
+                <div class="task-card">
+                    <input type="checkbox" name="task_ids" value="{{ task.id }}">
+                    <h2>{{ task.title }}</h2>
+                    <p><strong>Description:</strong> {{ task.description }}</p>
+                    {% if task.deadline %}
+                        <p><strong>Deadline:</strong> {{ task.deadline }}</p>
+                    {% endif %}
+                    {% if task.assignment_type %}
+                        <p><strong>Assignment Type:</strong> {{ task.assignment_type }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="button-row">
+            <button type="submit">Delete Selected Tasks</button>
+            <a href="{{ url_for('index') }}" class="back-to-home">Back to Home</a>
+        </div>
+    </form>
+</body>
+</html>
